@@ -1,12 +1,10 @@
-
-* * *
-
+---
 
 ThingLogix Foundry
 
 Developer Reference Guide
 
-* * *
+---
 
 # Objects
 
@@ -16,17 +14,17 @@ Objects serve as the building blocks for creating any Foundry solution. An IoT d
 
 ## Object Attributes
 
-Object attributes are the core of what makes up a Foundry Object. Attributes are fields on an object that define its properties. 
+Object attributes are the core of what makes up a Foundry Object. Attributes are fields on an object that define its properties.
 
-For example, an object of type "Car" may have the following properties: 
+For example, an object of type "Car" may have the following properties:
 
-* Color
+- Color
 
-* Number of axles
+- Number of axles
 
-* Make 
+- Make
 
-* Model 
+- Model
 
 For more information on defining attributes, refer to the section defining [Attributes](#heading=h.wqkweu1vsex5).
 
@@ -50,9 +48,9 @@ References serve as a way to define relationships between Objects.
 
 To create a reference from Object A to Object B:
 
-1. Ensure an attribute of data type **Reference **exists on the Object Type on Object A. If there is no attribute of type **Reference**, see [References](#heading=h.1ff7ux5vta7s)
+1. Ensure an attribute of data type **Reference** exists on the Object Type on Object A. If there is no attribute of type **Reference**, see [References](#heading=h.1ff7ux5vta7s)
 
-2. On Object A, click **Add Attribute **in the **Attributes **tab.
+2. On Object A, click **Add Attribute** in the **Attributes** tab.
 
 3. Choose the attribute from step 1.
 
@@ -62,7 +60,7 @@ To create a reference from Object A to Object B:
 
 ### Viewing References
 
-To view all references **to **an Object, click on the **References **tab on the detail page.
+To view all references **to** an Object, click on the **References**tab on the detail page.
 
 ![image alt text](image_1.png)
 
@@ -78,7 +76,7 @@ Dashboards can be added to objects by performing the following steps:
 
 4. Navigate to the **Dashboard** tab on the object detail.
 
-This dashboard will update in realtime as mqtt messages are published onto the object. 
+This dashboard will update in realtime as mqtt messages are published onto the object.
 
 ## Groups
 
@@ -86,7 +84,7 @@ Groups provide another way to organize objects in Foundry and are made up of two
 
 ### Parent Groups
 
-Groups are just like other objects in Foundry, but with the special property that they can hold other objects inside of it. To create a Group, follow the standard object creation process but check the **Create as Group** checkbox before creation. 
+Groups are just like other objects in Foundry, but with the special property that they can hold other objects inside of it. To create a Group, follow the standard object creation process but check the **Create as Group** checkbox before creation.
 
 ![image alt text](image_2.png)
 
@@ -110,13 +108,13 @@ To add child objects to a group:
 
 ### What is Mqtt?
 
-Mqtt (MQ Telemetry Transport) is the primary communication protocol used by Foundry. Mqtt follows a pub/sub architecture that allows Mqtt messages to be published to an Mqtt topic and subscribers of this Mqtt topic to receive the messages. 
+Mqtt (MQ Telemetry Transport) is the primary communication protocol used by Foundry. Mqtt follows a pub/sub architecture that allows Mqtt messages to be published to an Mqtt topic and subscribers of this Mqtt topic to receive the messages.
 
 For official documentation on the IoT Broker that Foundry uses, see [https://docs.aws.amazon.com/iot/latest/developerguide/iot-message-broker.html](https://docs.aws.amazon.com/iot/latest/developerguide/iot-message-broker.html)
 
 ### Objects and Mqtt
 
-Each Foundry Object, by default, has a special attribute called Mqtt Topic (mqtt_topic). If an mqtt topic is not specified when creating the object, Foundry will automatically assign one with the structure: **com.thinglogix/{object type id}/{object id}**. 
+Each Foundry Object, by default, has a special attribute called Mqtt Topic (mqtt_topic). If an mqtt topic is not specified when creating the object, Foundry will automatically assign one with the structure: **com.thinglogix/{object type id}/{object id}**.
 
 #### Attribute Updates
 
@@ -124,17 +122,17 @@ When mqtt messages are published onto an Object’s mqtt topic, Foundry breaks d
 
 1. The mqtt message contains an attribute that **is not** on the object, and **is** on the object’s Object Type
 
-    1. The new attribute will be added to the object.
+   1. The new attribute will be added to the object.
 
-2. The mqtt message contains an attribute that **is **on the object, and **is** on the object’s Object Type
+2. The mqtt message contains an attribute that **is** on the object, and **is** on the object’s Object Type
 
-    2. The new attribute will update the old attribute on the object.
+   2. The new attribute will update the old attribute on the object.
 
-3. The mqtt message contains an attribute that **is not **on the object, and **is not** on the object’s Object Type
+3. The mqtt message contains an attribute that **is not** on the object, and **is not** on the object’s Object Type
 
-    3. The new attribute will be added to the object.
+   3. The new attribute will be added to the object.
 
-    4. The new attribute will be added to the object’s object type.
+   4. The new attribute will be added to the object’s object type.
 
 #### Notes
 
@@ -154,17 +152,17 @@ Object Types define how an object is structured and behaves -- similar to a blue
 
 ## Attributes
 
-Attributes define the structure of data on an object type.  There is no limit to the number of attributes on a single object type. 
+Attributes define the structure of data on an object type. There is no limit to the number of attributes on a single object type.
 
 A **Car** object type may have the following attributes:
 
-* Color
+- Color
 
-* Make
+- Make
 
-* Model
+- Model
 
-* Number of axles
+- Number of axles
 
 ### Name vs Key
 
@@ -180,61 +178,61 @@ HuMidiTy -> humidity
 
 ### Data Types
 
-**Data Types **are what define the type of data that each attribute is. The following data types are supported:
+**Data Types**are what define the type of data that each attribute is. The following data types are supported:
 
-* String (single line text value)
+- String (single line text value)
 
-* Textarea (multi-line text value)
+- Textarea (multi-line text value)
 
-* Integer (whole, integer numbers)
+- Integer (whole, integer numbers)
 
-* Datetime (date value with time)
+- Datetime (date value with time)
 
-* Date (date value without time)
+- Date (date value without time)
 
-* JSON (Javascript Object Notation)
+- JSON (Javascript Object Notation)
 
-* Location (latitude-longitude pair. More information [here](#heading=h.el6pmg73r7nj))
+- Location (latitude-longitude pair. More information [here](#heading=h.el6pmg73r7nj))
 
-* Decimal (floating point number)
+- Decimal (floating point number)
 
-* Picklist (a dropdown list of text values)
+- Picklist (a dropdown list of text values)
 
-* Formula (More information [here](#heading=h.fyma3do0ledl))
+- Formula (More information [here](#heading=h.fyma3do0ledl))
 
-* File (link or file upload)
+- File (link or file upload)
 
-* Reference (object reference. More information [here](#heading=h.1ff7ux5vta7s))
+- Reference (object reference. More information [here](#heading=h.1ff7ux5vta7s))
 
-* AutoNumber (auto incrementing number. I.e 1, 2, 3…)
+- AutoNumber (auto incrementing number. I.e 1, 2, 3…)
 
-* Media (Links to media to display in-line on the UI. Videos, Images, etc)
+- Media (Links to media to display in-line on the UI. Videos, Images, etc)
 
-A **Car **Object Type may have the following data types for its’ attributes:
+A **Car** Object Type may have the following data types for its’ attributes:
 
-* Color: Picklist (blue, red, grey, white, black)
+- Color: Picklist (blue, red, grey, white, black)
 
-* Make: String
+- Make: String
 
-* Model: String
+- Model: String
 
-* Number of axles: Integer
+- Number of axles: Integer
 
 ### Creating Attributes
 
 1. Navigate to the desired Object Type
 
-2. Click on the **Attributes **tab
+2. Click on the **Attributes** tab
 
 3. Click **Add new Attribute**
 
-4. Fill in the **name **and **data type **fields.
+4. Fill in the **name** and **data type** fields.
 
-    1. Certain data types allow for default values which will be automatically filled in when creating the object.
+   1. Certain data types allow for default values which will be automatically filled in when creating the object.
 
 ### Characteristics
 
-Attributes also have certain **characteristics **associated with them which affects how they behave.
+Attributes also have certain **characteristics** associated with them which affects how they behave.
 
 #### ![image alt text](image_5.png)Required
 
@@ -242,7 +240,7 @@ Attributes marked with the **required** characteristic must be added when creati
 
 #### Display in View Tab
 
-On each object detail page, there is a **view tab **which formats the attributes in a user-friendly way. By checking this characteristic, the attribute will appear there. For more information on how to organize the **view tab**, see [Attribute Group](#heading=h.e3m8nai23m8).
+On each object detail page, there is a **view tab** which formats the attributes in a user-friendly way. By checking this characteristic, the attribute will appear there. For more information on how to organize the **view tab**, see [Attribute Group](#heading=h.e3m8nai23m8).
 
 #### Read Only
 
@@ -250,7 +248,7 @@ This characteristic prevents users from modifying this value in the webapp. This
 
 #### Searchable
 
-This marks the attribute as being searchable in the global search bar. By default, **name **is searchable on all objects. Attributes with this characteristic checked will be indexed for quicker lookups.
+This marks the attribute as being searchable in the global search bar. By default, **name** is searchable on all objects. Attributes with this characteristic checked will be indexed for quicker lookups.
 
 ![image alt text](image_6.png)
 
@@ -268,21 +266,21 @@ Global Actions can be associated to an Object Type to provide quick access to th
 
 Indexes are groups of attributes that are indexed by Foundry in order to make searches faster on those attributes. Indexes are a pivotal part of a Foundry solution; they create more efficient searches and speed up the overall Foundry solution.
 
-Let’s continue with the **Car **example. 
+Let’s continue with the **Car** example.
 
-A typical solution with a car would want the ability to search on: 
+A typical solution with a car would want the ability to search on:
 
-* The make of the car
+- The make of the car
 
-* The make and model of the car
+- The make and model of the car
 
-* The model of the car
+- The model of the car
 
-In this case, we have **3 **indexes: **make, make-model, **and **model**.
+In this case, we have **3** indexes: **make**, **make-model**, and **model**.
 
 ### Creating Indexes
 
-1. Click on the **Indexes **tab
+1. Click on the **Indexes** tab
 
 2. Click **Add new Index**
 
@@ -326,19 +324,19 @@ Adding a string url to this displays the image on the Object detail page for all
 
 ### Last Mqtt Timestamp (last_mqtt_timestamp)
 
-The last_mqtt_timestamp attribute is updated with an epoch timestamp whenever the Object receives an MQTT message. This can be useful for formulas and checking whether an MQTT message has updated the Object. A formula with 
+The last_mqtt_timestamp attribute is updated with an epoch timestamp whenever the Object receives an MQTT message. This can be useful for formulas and checking whether an MQTT message has updated the Object. A formula with
 
-$OLD{last_mqtt_timestamp}l != ${last_mqtt_timestamp} 
+$OLD{last_mqtt_timestamp}l != ${last_mqtt_timestamp}
 
 will only fire on MQTT messages. For more information on Formulas, see [Formulas](#heading=h.fyma3do0ledl).
 
-* Note the "l" after ${last_mqtt_timestamp}. This is required because the timestamp is greater than the size of a Java primitive int, and therefore must be cast as a primitive long ([https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html)).
+- Note the "l" after \${last_mqtt_timestamp}. This is required because the timestamp is greater than the size of a Java primitive int, and therefore must be cast as a primitive long ([https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html)).
 
 ### Mqtt State (mqtt_state)
 
-The mqtt_state attribute has two values: **Active** and **Suspended**. By default, the attribute is set to **Active**. When an object has its’ mqtt_state set to **Active**, it will update with messages published to its’ [mqtt_topic](#heading=h.9w1asbkfvnt4). When an object has its’ state set to **Suspended**, it will *not* update with messages published to its’ [mqtt_topic](#heading=h.9w1asbkfvnt4).
+The mqtt_state attribute has two values: **Active** and **Suspended**. By default, the attribute is set to **Active**. When an object has its’ mqtt_state set to **Active**, it will update with messages published to its’ [mqtt_topic](#heading=h.9w1asbkfvnt4). When an object has its’ state set to **Suspended**, it will _not_ update with messages published to its’ [mqtt_topic](#heading=h.9w1asbkfvnt4).
 
-* If the attribute is removed from an object, the object will behave the same as if the attribute was set to **Active**. 
+- If the attribute is removed from an object, the object will behave the same as if the attribute was set to **Active**.
 
 ### Location Attributes
 
@@ -362,29 +360,29 @@ All formulas are run on an object every time the object is updated. Because cond
 
 #### Overview
 
-In general Foundry Formulas follow Java syntax, however there are a few key differences between the two syntaxes. 
+In general Foundry Formulas follow Java syntax, however there are a few key differences between the two syntaxes.
 
 #### Variable Lookups
 
-Formulas are able to use attributes of the object as variables in their logic. To reference a variable formulas use the syntax **\${json\_key}** where **json_key** is the attributes JSON Key value.  Formulas are also able to use the previous value of an attribute by using the syntax **$OLD{json_key}**. It is important to note when accessing variables that are strings the **\$\{\}** must be surrounded with quotes.
+Formulas are able to use attributes of the object as variables in their logic. To reference a variable formulas use the syntax **\${json_key}** where **json_key** is the attributes JSON Key value. Formulas are also able to use the previous value of an attribute by using the syntax **\$OLD{json_key}**. It is important to note when accessing variables that are strings the **\$\{\}** must be surrounded with quotes.
 
-* Numbers: **\$\{json_key\}**
+- Numbers: **\$\{json_key\}**
 
-* Strings: **"${json_key}"**
+- Strings: **"\${json_key}"**
 
 #### Available Operators
 
-* **!= **: Not Equals (${a} == 1)
+- **!=**: Not Equals (\${a} == 1)
 
-* **== **: Equals (${a} != 1)
+- **==**: Equals (\${a} != 1)
 
-* **+, -, /, *, % **: Addition, Subtraction, Division, Multiplication, Modulo (${a} + 1)
+- **+, -, /, \*, %**: Addition, Subtraction, Division, Multiplication, Modulo (\${a} + 1)
 
-* **&& **: Bitwise AND (${a} > 0 && ${a} < 5 )
+- **&&**: Bitwise AND (${a} > 0 && ${a} < 5 )
 
-* **|| :** Bitwise OR (${a} < 0 || ${a} >= 5 )
+- **|| :** Bitwise OR (${a} < 0 || ${a} >= 5 )
 
-* **Statement ? Value1 : Value2** : Ternary, If Statement is true then Value 1 else Value 2. (${a} < 0 ? "Negative" : “Positive”)
+- **Statement ? Value1 : Value2** : Ternary, If Statement is true then Value 1 else Value 2. (\${a} < 0 ? "Negative" : “Positive”)
 
 #### Supported Functions
 
@@ -485,26 +483,25 @@ Along with the basic operations, Foundry includes a few built in functions which
   </tr>
 </table>
 
-
 #### Special Attributes
 
-* **${Updated} **: Timestamp in milliseconds of when the object was last updated.
+- **\${Updated}**: Timestamp in milliseconds of when the object was last updated.
 
-* **${Created} **: Timestamp in milliseconds of when the object was created.
+- **\${Created}**: Timestamp in milliseconds of when the object was created.
 
-* **${deviceId} **: DeviceId of the object.
+- **\${deviceId}**: DeviceId of the object.
 
-* **${accountId} **: accountId of the object.
+- **\${accountId}**: accountId of the object.
 
-* **${typeId} **: typeId of the object.
+- **\${typeId}**: typeId of the object.
 
-* **${updated_by} **: UserId of user who last edited object
+- **\${updated_by}**: UserId of user who last edited object
 
 #### Using References
 
 Attributes that are of type "Reference" are special because the reference object attribute’s can also be used in the Formula. To use a reference object attribute’s in a formula use the syntax:
 
-**${ref_json_key__r.json_key}**
+**\${ref_json_key\_\_r.json_key}**
 
 Where ref_json_key is the Json key of the attribute that is a reference. And json_key is the Json key of the attribute on the referenced Object. It’s also important to note that there are TWO underscores in the syntax.
 
@@ -514,53 +511,53 @@ Conditional formulas are used for firing Global Actions based on a series of if-
 
 ### Run every time
 
-* 1 == 1
+- 1 == 1
 
-* true **(untested)**
+- true **(untested)**
 
-* Only use when **Run Only On Object Creation** is checked.
+- Only use when **Run Only On Object Creation** is checked.
 
 ### Run when an attribute has changed
 
-* $OLD{last_mqtt_timestamp}l != ${last_mqtt_timestamp}l
+- $OLD{last_mqtt_timestamp}l != ${last_mqtt_timestamp}l
 
-    * Checking if a numerical attribute has changed
+  - Checking if a numerical attribute has changed
 
-* !equals("$OLD{username}", “${username}”)
+- !equals("$OLD{username}", “${username}”)
 
-    * Checking if a string attribute has changed
+  - Checking if a string attribute has changed
 
-* !equals("$OLD{temperature}", “${temperature}”)
+- !equals("$OLD{temperature}", “${temperature}”)
 
-    * Checking if a numerical attribute has changed by first casting it as string
+  - Checking if a numerical attribute has changed by first casting it as string
 
 ### Run when an attribute has changed and some other criteria
 
-* $OLD{last_mqtt_timestamp}l != ${last_mqtt_timestamp}l && ${temperature} > 30
+- $OLD{last_mqtt_timestamp}l != ${last_mqtt_timestamp}l && \${temperature} > 30
 
-* $OLD{moisture} != ${moisture} && ${moisture} > 30
+- $OLD{moisture} != ${moisture} && \${moisture} > 30
 
-* !equals("\$OLD{username}", “\${username}”) \&\& equals(“${date}”, “Monday”)
+- !equals("\$OLD{username}", “\${username}”) \&\& equals(“\${date}”, “Monday”)
 
-* !equals("\$OLD{status}", “\${status}”) \&\& equals(“${status}”, “Processed”)
+- !equals("\$OLD{status}", “\${status}”) \&\& equals(“\${status}”, “Processed”)
 
 ## Regular
 
 Regular formulas are used for either transforming existing attribute values, or generating entirely new attribute values. Typically, regular formulas can be constructed with one of the following types of formulas:
 
-* Transform an existing attribute value
+- Transform an existing attribute value
 
-    * (${temperature_f} - 32) / 1.8
+  - (\${temperature_f} - 32) / 1.8
 
-    * ${sensor__r.moisture} + 50
+  - \${sensor\_\_r.moisture} + 50
 
-* Generate a new attribute value
+- Generate a new attribute value
 
-    * ${temperature_f} > 90 ? "fire.png" : “ice.png”
+  - \${temperature_f} > 90 ? "fire.png" : “ice.png”
 
 ## Reference
 
-Formulas can take advantage of attributes on a [reference](#heading=h.3cjv5d564hpj) to other objects in order to perform more advanced calculations. 
+Formulas can take advantage of attributes on a [reference](#heading=h.3cjv5d564hpj) to other objects in order to perform more advanced calculations.
 
 To use an attribute on Object B in a formula on Object A:
 
@@ -568,25 +565,25 @@ To use an attribute on Object B in a formula on Object A:
 
 2. Create formula on Object A’s Object Type:
 
-    1. ${object_b_reference__r.temperature}
+   1. \${object_b_reference\_\_r.temperature}
 
-The reference syntax follows regular formula syntax with one key distinction: **__r** must be appended to the end of the attribute json key. *Note that there are two underscores*.
+The reference syntax follows regular formula syntax with one key distinction: **\_\_r** must be appended to the end of the attribute json key. _Note that there are two underscores_.
 
 # Foundry Actions
 
 ## Intro
 
-Foundry Actions are what define the logic of your application. Foundry Actions store a payload with an action associated to it. These actions can be run via formula fields, ran manually, or scheduled. Each action needs to be created in a specific way which is outlined here. 
+Foundry Actions are what define the logic of your application. Foundry Actions store a payload with an action associated to it. These actions can be run via formula fields, ran manually, or scheduled. Each action needs to be created in a specific way which is outlined here.
 
 ## Types
 
 There are 3 different types of actions that Foundry Actions can do:
 
-* Publish to an MQTT topic
+- Publish to an MQTT topic
 
-* Invoke a Lambda function 
+- Invoke a Lambda function
 
-* Make an HTTP request
+- Make an HTTP request
 
 ### Mqtt Publish
 
@@ -596,29 +593,29 @@ Publishes the **payload** to the topic specified on the **mqtt_publish_topic** a
 
 #### Required Attributes
 
-* mqtt_publish_topic
+- mqtt_publish_topic
 
-* payload 
+- payload
 
-* action_type
+- action_type
 
-*Make sure **action_type ** is set to **Mqtt Publish**
+\*Make sure **action_type ** is set to **Mqtt Publish**
 
 ### Lambda Invoke
 
 #### What it does
 
-Sends the **payload** to a lambda function specified on the **lambda_arn** field. 
+Sends the **payload** to a lambda function specified on the **lambda_arn** field.
 
 #### Required Attributes
 
-* lambda_arn
+- lambda_arn
 
-* payload 
+- payload
 
-* action_type
+- action_type
 
-*Make sure **action_type** is set to **Lambda Invoke**
+\*Make sure **action_type** is set to **Lambda Invoke**
 
 ### HTTP Request
 
@@ -628,29 +625,29 @@ Sends the **payload** to any HTTP request. You can specify a GET, POST, PUT, or 
 
 #### Required Attributes
 
-* http_url
+- http_url
 
-* payload 
+- payload
 
-* action_type
+- action_type
 
-* http_headers (optional)
+- http_headers (optional)
 
-*Make sure **action_type** is set to **HTTP {type}** where {type} is either GET, PUT, DELETE, POST.  If certain headers are required, fill those in on the **http_headers** field.
+\*Make sure **action_type** is set to **HTTP {type}** where {type} is either GET, PUT, DELETE, POST. If certain headers are required, fill those in on the **http_headers** field.
 
 ## Invoking/Scheduling
 
 Foundry Actions are run on individual objects. Data from each object can be used in the payload of the action to perform logic on. There are 3 ways to invoke a Foundry Action:
 
-* Via [Formulas](#heading=h.bce3b56l4ral)
+- Via [Formulas](#heading=h.bce3b56l4ral)
 
-* On an object detail page 
+- On an object detail page
 
-* On search results
+- On search results
 
 ### Object Detail
 
-If the [Object Type is configured for Foundry Actions](#heading=h.1lfsmy6eb0ns), actions can be invoked on Objects of that type. Invoke actions configured for an object type by doing the following: 
+If the [Object Type is configured for Foundry Actions](#heading=h.1lfsmy6eb0ns), actions can be invoked on Objects of that type. Invoke actions configured for an object type by doing the following:
 
 1. Navigate to the Object where the Action is to be invoked. This can be done through the Object Manager
 
@@ -660,11 +657,11 @@ If the [Object Type is configured for Foundry Actions](#heading=h.1lfsmy6eb0ns),
 
 ### Search Results
 
-Actions can also be run on ad-hoc search results with no prior configuration. 
+Actions can also be run on ad-hoc search results with no prior configuration.
 
 1. Navigate to the Object Manager.
 
-2. [Perform a search on the Objects to invoke the Action on](#heading=h.2i87hyktqj24). 
+2. [Perform a search on the Objects to invoke the Action on](#heading=h.2i87hyktqj24).
 
 3. An Action Invoker will appear over the search results. Select the Action to invoke and click **Invoke** or **Schedule**.
 
@@ -672,53 +669,54 @@ Actions can also be run on ad-hoc search results with no prior configuration.
 
 ### Formulas
 
-Foundry Actions can also be invoked via [Formulas](#heading=h.bce3b56l4ral). This is useful for automating MQTT publishes and running lambda functions based on other events in a Foundry solution. 
+Foundry Actions can also be invoked via [Formulas](#heading=h.bce3b56l4ral). This is useful for automating MQTT publishes and running lambda functions based on other events in a Foundry solution.
 
-To use Foundry Actions in a formula, use the *executeAction() *function [outlined here in the Formulas documentation](#heading=h.bce3b56l4ral). 
+To use Foundry Actions in a formula, use the *executeAction() *function [outlined here in the Formulas documentation](#heading=h.bce3b56l4ral).
 
 ## The Payload Structure
 
-The most important part of a Foundry Action is the payload. This is what defines what data to use in the Action. 
+The most important part of a Foundry Action is the payload. This is what defines what data to use in the Action.
 
-The payload is the field **payload** and is required on all Foundry Actions. It is what is passed into Lambda functions, published on MQTT topics, and what is sent to HTTP requests. 
+The payload is the field **payload** and is required on all Foundry Actions. It is what is passed into Lambda functions, published on MQTT topics, and what is sent to HTTP requests.
 
-The payload can be defined with whatever parameters are needed. In addition, fields on the Object the Action is run against are available for the Action to use. The syntax used for accessing attributes on Objects is [json_key]. For example, if there is an Object with fields: 
+The payload can be defined with whatever parameters are needed. In addition, fields on the Object the Action is run against are available for the Action to use. The syntax used for accessing attributes on Objects is [json_key]. For example, if there is an Object with fields:
 
-* Make: Ford
+- Make: Ford
 
-* Model: Explorer
+- Model: Explorer
 
-Then the Action can use these values by specifying the payload like this: 
-
-{
-
-   "vehicleMake": “[make]”,
-
-   "vehicleModel": “[model]”,
-
-   "nameOfCar": “Test Car”
-
-}
-
-The payload that gets passed into the Action would result in: 
+Then the Action can use these values by specifying the payload like this:
 
 {
 
-   "vehicleMake": “Ford”,
+"vehicleMake": “[make]”,
 
-   "vehicleModel": “Explorer”,
+"vehicleModel": “[model]”,
 
-   "nameOfCar": “Test Car”
+"nameOfCar": “Test Car”
 
 }
 
-## Creating a Foundry Action 
+The payload that gets passed into the Action would result in:
 
-Foundry Actions are created in the same manner as [creating Objects](#heading=h.k078ozzbg2eu). 
+{
+
+"vehicleMake": “Ford”,
+
+"vehicleModel": “Explorer”,
+
+"nameOfCar": “Test Car”
+
+}
+
+## Creating a Foundry Action
+
+Foundry Actions are created in the same manner as [creating Objects](#heading=h.k078ozzbg2eu).
 
 1. Create an Object with the Object Type **Global Action**.
 
-2. Add all the required attributes for the type of action needed. Here is where to find the required attributes per type: 
+2. Add all the required attributes for the type of action needed. Here is where to find the required attributes per type:
+
 - [MQTT Publish](#heading=h.emyuhi3l0uv8)
 - [Lambda Invoke](#heading=h.rmm2g21v3hz)
 - [HTTP Request](#heading=h.jyupzk88kbn0)
@@ -731,7 +729,7 @@ Foundry Accounts serve as a way to group together Foundry Users and other Foundr
 
 ## Hierarchy/Visibility
 
-Every Foundry account has a single parent account, and in some cases, many child accounts. By default, users in a Foundry account have full access to the Foundry resources in their account and all accounts below them, but **not **to the accounts above them or on separate hierarchy branches. This downward-looking visibility model ensures that users further down in the account hierarchy cannot access resources out of their control. This visibility model can be changed with **Foundry ACLs.**
+Every Foundry account has a single parent account, and in some cases, many child accounts. By default, users in a Foundry account have full access to the Foundry resources in their account and all accounts below them, but **not** to the accounts above them or on separate hierarchy branches. This downward-looking visibility model ensures that users further down in the account hierarchy cannot access resources out of their control. This visibility model can be changed with **Foundry ACLs.**
 
 ## ACL
 
@@ -739,9 +737,9 @@ Foundry Account Control Lists (ACL) allow users to grant specific accounts or us
 
 ACLs can modify the ability to:
 
-* Read, write, and delete Objects
+- Read, write, and delete Objects
 
-* Read, write, and delete Users
+- Read, write, and delete Users
 
 To create an ACL from Account A to Account B that grants all Account B Users access to **write objects** in Account A:
 
@@ -754,7 +752,6 @@ To create an ACL from Account A to Account B that grants all Account B Users acc
 4. Check the **Write** checkbox from the list of **Permissions to Objects**.
 
 5. Click **Add**.
-
 
 To create an ACL from Account A to Account B that grants a specific User in Account B access** to read users** in Account A:
 
@@ -782,11 +779,11 @@ Users must be assigned a role which designates which pages and operations they h
 
 Each user can be assigned one of three roles:
 
-* Admin
+- Admin
 
-* User
+- User
 
-* View Only
+- View Only
 
 ### Admin
 
@@ -802,9 +799,9 @@ Users with the User role have access to all pages that have been designated with
 
 ## Policy
 
-* Policy can be attached to user (see policy section)
+- Policy can be attached to user (see policy section)
 
-* Screenshots for how to attach
+- Screenshots for how to attach
 
 # Search
 
@@ -814,7 +811,7 @@ Users with the User role have access to all pages that have been designated with
 
 Advanced Search is one of three object search solutions in Foundry. Advanced Search can be used to search all objects spanning across many accounts based on a variety of search criteria.
 
-## Search Criteria 
+## Search Criteria
 
 ### Account
 
@@ -826,7 +823,7 @@ Searches for objects that have a particular Object Type.
 
 ### Object Type Attribute
 
-Searches for objects that have a particular attribute value. When building this criteria, Foundry separates the attributes by Object Type. 
+Searches for objects that have a particular attribute value. When building this criteria, Foundry separates the attributes by Object Type.
 
 Note, however, that running a search only using this criteria will not necessarily return objects of a single Object Type. For example, running a search after selecting an attribute that is shared across many object types such as "name", may return objects from many object types. To guarantee objects from only a single object type, pair this criteria with the Object Type criteria.
 
@@ -879,8 +876,7 @@ The following attributes would make for a **bad** index:
   </tr>
 </table>
 
-
-The following attributes would make for a **good **index
+The following attributes would make for a **good** index
 
 <table>
   <tr>
@@ -896,7 +892,6 @@ The following attributes would make for a **good **index
     <td>Red, Blue, Silver</td>
   </tr>
 </table>
-
 
 Index attributes should generally have a small, predictable, range of values. This will keep the index performant, and lead to more useful searches.
 
@@ -930,11 +925,11 @@ Global searches look up objects based on their name. To use the search use the O
 
 ![image alt text](image_12.png)
 
-* Run searches on object names
+- Run searches on object names
 
 ### Running Search
 
-* **Screenshots** of building a search
+- **Screenshots** of building a search
 
 ## Saved Searches
 
