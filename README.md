@@ -26,7 +26,7 @@ For example, an object of type "Car" may have the following properties:
 
 - Model
 
-For more information on defining attributes, refer to the section defining [Attributes](#heading=h.wqkweu1vsex5).
+For more information on defining attributes, refer to the section defining [Attributes](#Attributes).
 
 ## Object History
 
@@ -38,7 +38,7 @@ An Object’s history contains the complete set of modifications made to it. Eve
 
 ### Posted Data
 
-Posted data differs from the full object history in that new records are only created after an Object is updated from an MQTT message. Additionally, posted data only contains attributes that were part of the MQTT payload, while the [Full History](#heading=h.oy9isgkq64cl) contains a complete copy of the object.
+Posted data differs from the full object history in that new records are only created after an Object is updated from an MQTT message. Additionally, posted data only contains attributes that were part of the MQTT payload, while the [Full History](#Full-History) contains a complete copy of the object.
 
 ## References
 
@@ -48,7 +48,7 @@ References serve as a way to define relationships between Objects.
 
 To create a reference from Object A to Object B:
 
-1. Ensure an attribute of data type **Reference** exists on the Object Type on Object A. If there is no attribute of type **Reference**, see [References](#heading=h.1ff7ux5vta7s)
+1. Ensure an attribute of data type **Reference** exists on the Object Type on Object A. If there is no attribute of type **Reference**, see [References](#References)
 
 2. On Object A, click **Add Attribute** in the **Attributes** tab.
 
@@ -68,11 +68,11 @@ To view all references **to** an Object, click on the **References**tab on the d
 
 Dashboards can be added to objects by performing the following steps:
 
-1. Create a dashboard using the [Dashboard Manager](#heading=h.v0ghf2105aqx).
+1. Create a dashboard using the [Dashboard Manager]().
 
-2. Configure the dashboard to include visualizations with the **Data Source** field set to **Object Type**, and the **Object Type** field set to the [Object Type](#heading=h.lnavfrihn7o3) of the object being added to the dashboard.
+2. Configure the dashboard to include visualizations with the **Data Source** field set to **Object Type**, and the **Object Type** field set to the [Object Type](#Object-Type) of the object being added to the dashboard.
 
-3. [Create a reference](#heading=h.2e21drj0ztcj) from the object to the dashboard.
+3. [Create a reference](#Creating-References) from the object to the dashboard.
 
 4. Navigate to the **Dashboard** tab on the object detail.
 
@@ -138,7 +138,7 @@ When mqtt messages are published onto an Object’s mqtt topic, Foundry breaks d
 
 If an object does not have an Mqtt Topic attribute, it will not be able to receive mqtt messages. If two objects share the same Mqtt Topic, both objects will get updated with new mqtt messages.
 
-Both IoT devices as well as Foundry Objects can use Mqtt to communicate data between each other. To send an mqtt message from one object to another, see [Mqtt Publish Foundry Action](#heading=h.emyuhi3l0uv8).
+Both IoT devices as well as Foundry Objects can use Mqtt to communicate data between each other. To send an mqtt message from one object to another, see [Mqtt Publish Foundry Action](#Mqtt-Publish).
 
 # Auto Provisioning
 
@@ -192,17 +192,17 @@ HuMidiTy -> humidity
 
 - JSON (Javascript Object Notation)
 
-- Location (latitude-longitude pair. More information [here](#heading=h.el6pmg73r7nj))
+- Location (latitude-longitude pair. More information [here](#Location-Attributes))
 
 - Decimal (floating point number)
 
 - Picklist (a dropdown list of text values)
 
-- Formula (More information [here](#heading=h.fyma3do0ledl))
+- Formula (More information [here](#Formulas)
 
 - File (link or file upload)
 
-- Reference (object reference. More information [here](#heading=h.1ff7ux5vta7s))
+- Reference (object reference. More information [here](#References))
 
 - AutoNumber (auto incrementing number. I.e 1, 2, 3…)
 
@@ -240,7 +240,7 @@ Attributes marked with the **required** characteristic must be added when creati
 
 #### Display in View Tab
 
-On each object detail page, there is a **view tab** which formats the attributes in a user-friendly way. By checking this characteristic, the attribute will appear there. For more information on how to organize the **view tab**, see [Attribute Group](#heading=h.e3m8nai23m8).
+On each object detail page, there is a **view tab** which formats the attributes in a user-friendly way. By checking this characteristic, the attribute will appear there. For more information on how to organize the **view tab**, see [Attribute Group](#Attribute-Group).
 
 #### Read Only
 
@@ -256,7 +256,7 @@ This marks the attribute as being searchable in the global search bar. By defaul
 
 Formulas provide a way to add logic to objects. To view Formulas all formulas on an Object Type, click the **Formula** tab on the Object Type detail page.
 
-A more detailed explanation of formulas can be found in the [Formulas](#heading=h.fyma3do0ledl) part of this document.
+A more detailed explanation of formulas can be found in the [Formulas](#Formulas) part of this document.
 
 ## Global Actions
 
@@ -288,7 +288,7 @@ In this case, we have **3** indexes: **make**, **make-model**, and **model**.
 
 ![image alt text](image_7.png)
 
-For information on how to search using indexes, see [Object Search](#heading=h.2i87hyktqj24).
+For information on how to search using indexes, see [Object Search](#Object-Search).
 
 ## Attribute Group
 
@@ -316,7 +316,7 @@ Attribute Groups provide a way to organize Object attributes on the Object detai
 
 The mqtt_topic attribute is used as the core mechanism for communicating to objects. Objects will automatically subscribe to their mqtt_topic and will update themselves (and their Object Type for new message keys) based on the messages received.
 
-For more information, see [Communication (Objects and MQTT)](#heading=h.3mlme0lih3z7).
+For more information, see [Communication (Objects and MQTT)](#Communication-\(Objects-and-MQTT\)).
 
 ### Icon Image (icon_image)
 
@@ -328,13 +328,13 @@ The last_mqtt_timestamp attribute is updated with an epoch timestamp whenever th
 
 $OLD{last_mqtt_timestamp}l != ${last_mqtt_timestamp}
 
-will only fire on MQTT messages. For more information on Formulas, see [Formulas](#heading=h.fyma3do0ledl).
+will only fire on MQTT messages. For more information on Formulas, see [Formulas](#Formulas).
 
 - Note the "l" after \${last_mqtt_timestamp}. This is required because the timestamp is greater than the size of a Java primitive int, and therefore must be cast as a primitive long ([https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html)).
 
 ### Mqtt State (mqtt_state)
 
-The mqtt_state attribute has two values: **Active** and **Suspended**. By default, the attribute is set to **Active**. When an object has its’ mqtt_state set to **Active**, it will update with messages published to its’ [mqtt_topic](#heading=h.9w1asbkfvnt4). When an object has its’ state set to **Suspended**, it will _not_ update with messages published to its’ [mqtt_topic](#heading=h.9w1asbkfvnt4).
+The mqtt_state attribute has two values: **Active** and **Suspended**. By default, the attribute is set to **Active**. When an object has its’ mqtt_state set to **Active**, it will update with messages published to its’ [mqtt_topic](#Mqtt-Topic-\(mqtt_topic\)). When an object has its’ state set to **Suspended**, it will _not_ update with messages published to its’ [mqtt_topic](#Mqtt-Topic).
 
 - If the attribute is removed from an object, the object will behave the same as if the attribute was set to **Active**.
 
@@ -557,7 +557,7 @@ Regular formulas are used for either transforming existing attribute values, or 
 
 ## Reference
 
-Formulas can take advantage of attributes on a [reference](#heading=h.3cjv5d564hpj) to other objects in order to perform more advanced calculations.
+Formulas can take advantage of attributes on a [reference](#Reference) to other objects in order to perform more advanced calculations.
 
 To use an attribute on Object B in a formula on Object A:
 
@@ -639,7 +639,7 @@ Sends the **payload** to any HTTP request. You can specify a GET, POST, PUT, or 
 
 Foundry Actions are run on individual objects. Data from each object can be used in the payload of the action to perform logic on. There are 3 ways to invoke a Foundry Action:
 
-- Via [Formulas](#heading=h.bce3b56l4ral)
+- Via [Formulas](#Formulas)
 
 - On an object detail page
 
@@ -647,7 +647,7 @@ Foundry Actions are run on individual objects. Data from each object can be used
 
 ### Object Detail
 
-If the [Object Type is configured for Foundry Actions](#heading=h.1lfsmy6eb0ns), actions can be invoked on Objects of that type. Invoke actions configured for an object type by doing the following:
+If the [Object Type is configured for Foundry Actions](#Global-Actions), actions can be invoked on Objects of that type. Invoke actions configured for an object type by doing the following:
 
 1. Navigate to the Object where the Action is to be invoked. This can be done through the Object Manager
 
@@ -661,7 +661,7 @@ Actions can also be run on ad-hoc search results with no prior configuration.
 
 1. Navigate to the Object Manager.
 
-2. [Perform a search on the Objects to invoke the Action on](#heading=h.2i87hyktqj24).
+2. [Perform a search on the Objects to invoke the Action on](#Object-Search).
 
 3. An Action Invoker will appear over the search results. Select the Action to invoke and click **Invoke** or **Schedule**.
 
@@ -669,9 +669,9 @@ Actions can also be run on ad-hoc search results with no prior configuration.
 
 ### Formulas
 
-Foundry Actions can also be invoked via [Formulas](#heading=h.bce3b56l4ral). This is useful for automating MQTT publishes and running lambda functions based on other events in a Foundry solution.
+Foundry Actions can also be invoked via [Formulas](#Formulas). This is useful for automating MQTT publishes and running lambda functions based on other events in a Foundry solution.
 
-To use Foundry Actions in a formula, use the *executeAction() *function [outlined here in the Formulas documentation](#heading=h.bce3b56l4ral).
+To use Foundry Actions in a formula, use the *executeAction() *function [outlined here in the Formulas documentation](#Formulas).
 
 ## The Payload Structure
 
@@ -711,15 +711,15 @@ The payload that gets passed into the Action would result in:
 
 ## Creating a Foundry Action
 
-Foundry Actions are created in the same manner as [creating Objects](#heading=h.k078ozzbg2eu).
+Foundry Actions are created in the same manner as [creating Objects](#Objects).
 
 1. Create an Object with the Object Type **Global Action**.
 
 2. Add all the required attributes for the type of action needed. Here is where to find the required attributes per type:
 
-- [MQTT Publish](#heading=h.emyuhi3l0uv8)
-- [Lambda Invoke](#heading=h.rmm2g21v3hz)
-- [HTTP Request](#heading=h.jyupzk88kbn0)
+- [MQTT Publish](#MQTT-Publish)
+- [Lambda Invoke](#Lambda-Invoke)
+- [HTTP Request](#HTTP-Request)
 
 # Accounts
 
@@ -775,7 +775,7 @@ Within an account, unlimited users can be created. Each user must have a unique 
 
 ## Role
 
-Users must be assigned a role which designates which pages and operations they have access to. For configuring page roles, see: [Page User Roles](#heading=h.41koj43idg9g).
+Users must be assigned a role which designates which pages and operations they have access to. For configuring page roles, see: [Page User Roles]().
 
 Each user can be assigned one of three roles:
 
