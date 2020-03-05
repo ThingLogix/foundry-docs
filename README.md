@@ -1,9 +1,5 @@
 ---
-
-ThingLogix Foundry
-
-Developer Reference Guide
-
+# ThingLogix Foundry Developer Reference Guide
 ---
 
 # Objects
